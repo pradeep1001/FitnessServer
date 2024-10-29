@@ -31,6 +31,27 @@ router.get("/GetByID", async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
+router.get("/GetAllNameID", async (req, res) => {
+    try {
+        let collection = await db.collection("Member");
+        let results = await collection.find({})
+            .project({ "_id": 1, "memberName": 1 })  // Only return needed fields
+            .sort({ "memberName": 1 })
+            .toArray();
+
+        if (!results || results.length === 0) {
+            return res.status(404).json({ 
+                message: "No records found" 
+            });
+        }
+
+        res.status(200).json(results);
+    } catch (error) {
+        res.status(500).json({ 
+            message: error.message 
+        });
+    }
+});
 
 // Insert new member
 router.post("/Insert", async (req, res) => {
