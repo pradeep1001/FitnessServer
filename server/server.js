@@ -23,9 +23,9 @@ app.use("/api/Booking", booking);
 app.use("/api/ClassSchedule", classschedule);
 app.use("/api/TrainerAsset", trainerasset);
 
-app.get('/', (req, res) => {
-    res.send('Welcome to the Fitness Server!');
-});
+// app.get('/', (req, res) => {
+//     res.send('Welcome to the Fitness Server!');
+// });
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
